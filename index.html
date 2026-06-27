@@ -254,6 +254,11 @@
     font-size:22px; text-transform:uppercase; letter-spacing:0.03em;
   }
   .hero-visual .ph-label span{ font-size:13px; opacity:0.85; max-width:240px; }
+  .hero-visual img{
+    width:100%; height:100%;
+    object-fit:cover;
+    position:absolute; inset:0;
+  }
   .hero-badge{
     position:absolute; bottom:-26px; left:-26px;
     background:var(--ink);
@@ -586,11 +591,7 @@
         </div>
       </div>
       <div class="hero-visual">
-        <!-- PLACEHOLDER PHOTO — remplacer ce <div class="ph-label"> par une <img src="assets/hero.jpg" alt="..."> -->
-        <div class="ph-label">
-          <strong>Photo à venir</strong>
-          <span>Glissez ici une photo du camion ou d'un burger signature (assets/hero.jpg)</span>
-        </div>
+        <img src="assets/truck.jpeg" alt="Food truck Comme chez Laeti à Mérignac, burgers faits maison">
         <div class="hero-badge">avis clients<b>4.9★</b>Google &amp; Guru</div>
       </div>
     </div>
@@ -793,45 +794,23 @@
         </div>
       </div>
 
-      <!--
-        GALERIE — PLACEHOLDERS
-        Remplacez chaque <div class="gallery-item"> par une image réelle :
-        <div class="gallery-item big"><img src="assets/photo-1.jpg" alt="Description de la photo"></div>
-        Gardez la classe "big" sur une seule tuile pour conserver la mise en page en mosaïque.
-      -->
       <div class="gallery-grid">
         <div class="gallery-item big">
-          <div class="ph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.6"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
-            <span>Photo signature<br>assets/photo-1.jpg</span>
-          </div>
+          <img src="assets/burger.jpeg" alt="Burger maison avec frites, Comme chez Laeti">
         </div>
         <div class="gallery-item">
-          <div class="ph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.6"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
-            <span>assets/photo-2.jpg</span>
-          </div>
+          <img src="assets/burger1.jpeg" alt="Burger gourmand fait maison">
         </div>
         <div class="gallery-item">
-          <div class="ph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.6"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
-            <span>assets/photo-3.jpg</span>
-          </div>
+          <img src="assets/dish.jpeg" alt="Plat du jour fait maison">
         </div>
         <div class="gallery-item">
-          <div class="ph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.6"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
-            <span>assets/photo-4.jpg</span>
-          </div>
+          <img src="assets/interior.jpeg" alt="Comptoir et intérieur du food truck Comme chez Laeti">
         </div>
         <div class="gallery-item">
-          <div class="ph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.6"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>
-            <span>assets/photo-5.jpg</span>
-          </div>
+          <img src="assets/desert.jpeg" alt="Dessert maison du food truck">
         </div>
       </div>
-      <p class="gallery-note">Photos à venir — remplacez les emplacements ci-dessus par vos visuels (camion, burgers, équipe).</p>
     </div>
   </section>
 
