@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comme chez Laeti — Food truck burgers maison à Mérignac</title>
+<title>Comme chez Laeti — Food truck cuisine traditionnelle maison à Mérignac</title>
 <meta name="description" content="Comme chez Laeti, food truck de burgers faits maison à Mérignac. Cuisine généreuse, accueil chaleureux. Du mardi au vendredi pour le déjeuner.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,13 +103,7 @@
     font-size:22px;
     letter-spacing:0.02em;
     text-decoration:none;
-    display:flex; align-items:center; gap:10px;
     white-space:nowrap;
-  }
-  .brand .dot{
-    width:10px; height:10px; border-radius:50%;
-    background:var(--ember);
-    box-shadow:0 0 0 4px rgba(217,98,43,0.18);
   }
   .nav-links{
     display:flex; gap:26px; list-style:none; margin:0; padding:0;
@@ -139,6 +133,7 @@
   .nav-cta:hover{ background:var(--ember-dark); transform:translateY(-1px); }
 
   .nav-toggle{ display:none; }
+  .nav-mobile{ display:none; }
 
   @media (max-width:760px){
     .nav-links{ display:none; }
@@ -152,7 +147,6 @@
     }
     .nav-toggle svg{width:20px;height:20px;}
     .nav-mobile{
-      display:none;
       flex-direction:column;
       gap:0;
       border-top:1px solid var(--line);
@@ -182,16 +176,15 @@
     align-items:center;
   }
   .eyebrow{
-    display:inline-flex; align-items:center; gap:10px;
+    display:inline-flex; align-items:center;
     font-size:13px; font-weight:700;
     letter-spacing:0.12em; text-transform:uppercase;
     color:var(--ember-dark);
     background:rgba(217,98,43,0.1);
-    padding:7px 14px 7px 10px;
+    padding:7px 14px;
     border-radius:999px;
     margin-bottom:22px;
   }
-  .eyebrow .pin{ width:8px; height:8px; border-radius:50%; background:var(--ember); }
 
   .hero h1{
     font-size:clamp(44px, 6.4vw, 78px);
@@ -208,7 +201,23 @@
   }
 
   .hero-actions{
-    display:flex; gap:14px; flex-wrap:wrap;
+    display:flex; gap:20px; flex-wrap:wrap; align-items:center;
+  }
+  .hero-ubereats-link{
+    display:inline-flex; align-items:center; gap:12px;
+    font-weight:700; font-size:14px;
+    letter-spacing:0.03em; text-transform:uppercase;
+    text-decoration:underline; text-decoration-color:var(--ember);
+    text-underline-offset:4px;
+    color:var(--ink);
+    transition:color .2s ease, text-decoration-color .2s ease;
+  }
+  .hero-ubereats-link:hover{
+    color:var(--ember-dark);
+    text-decoration-color:var(--ember-dark);
+  }
+  .hero-ubereats-link img{
+    width:50px; height:50px; object-fit:contain; flex-shrink:0;
   }
   .btn{
     display:inline-flex; align-items:center; gap:8px;
@@ -303,25 +312,29 @@
 
   /* ===== Présentation ===== */
   .about{ background:var(--paper); }
+  .about .section-tag,
+  .about .section-head h2{ color:var(--ink); }
   .about-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;
   }
   .about p{ color:var(--ink-soft); margin:0 0 18px; font-size:17px; }
   .about p:last-child{ margin-bottom:0; }
-  .about-stats{
-    display:grid; grid-template-columns:1fr 1fr; gap:18px;
-    margin-top:30px;
+  .about-highlight{
+    margin:26px 0 0;
+    padding:14px 0 14px 18px;
+    border-left:4px solid var(--ember);
+    font-size:17px;
+    color:var(--ink-soft);
+    line-height:1.55;
   }
-  .stat{
-    background:var(--cream);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:20px 18px;
+  .about-highlight strong{
+    font-family:'Anton', sans-serif;
+    font-size:26px;
+    font-weight:400;
+    color:var(--ember);
+    letter-spacing:0.02em;
+    text-transform:uppercase;
   }
-  .stat b{
-    display:block; font-family:'Anton', sans-serif; font-size:30px; color:var(--ember);
-  }
-  .stat span{ font-size:13px; color:var(--ink-soft); }
 
   .schedule-card{
     background:var(--ink);
@@ -471,9 +484,9 @@
   .connect-card .ic{
     width:44px; height:44px; border-radius:12px;
     display:flex; align-items:center; justify-content:center;
-    background:var(--ember);
+    overflow:hidden;
   }
-  .connect-card .ic svg{ width:22px; height:22px; color:var(--paper); }
+  .connect-card .ic img{ width:100%; height:100%; object-fit:contain; }
   .connect-card .label{ font-weight:700; font-size:16px; }
   .connect-card .sub{ font-size:13px; color:rgba(251,243,231,0.65); }
 
@@ -487,6 +500,15 @@
     font-family:'Anton', sans-serif; font-size:clamp(28px,4vw,40px);
     color:var(--mustard); text-decoration:none;
   }
+  .phone-line-contacts{
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .phone-line .big-email{
+    font-size:clamp(16px, 2.5vw, 20px);
+    font-weight:600;
+    color:var(--mustard); text-decoration:none;
+  }
+  .phone-line .big-email:hover{ text-decoration:underline; }
   .phone-line p{ margin:0; color:rgba(251,243,231,0.7); font-size:14px; max-width:340px; }
 
   @media (max-width:900px){
@@ -554,7 +576,7 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#main" class="brand"><span class="dot"></span>Comme chez Laeti</a>
+    <a href="#main" class="brand">Comme chez Laeti</a>
     <ul class="nav-links">
       <li><a href="#presentation">Présentation</a></li>
       <li><a href="#avis">Avis</a></li>
@@ -582,17 +604,17 @@
   <header class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow"><span class="pin"></span>Food truck · Mérignac (33)</span>
-        <h1>Des burgers<span class="line2">faits maison.</span></h1>
-        <p class="lede">Laeti cuisine chaque jour des burgers gourmands et généreux, avec des produits frais et de saison. Une cuisine familiale, un accueil qui l'est tout autant.</p>
+        <span class="eyebrow">Burgers &amp; cuisine maison</span>
+        <h1>La cuisine,<span class="line2">comme à la maison.</span></h1>
+        <p class="lede">Laeti cuisine chaque jour des burgers et des plats gourmands et généreux, avec des produits frais et de saison. Une cuisine familiale, un accueil qui l'est tout autant.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#adresse">Trouver le camion</a>
-          <a class="btn btn-ghost" href="tel:+33664225066">Appeler / réserver</a>
+          <a class="hero-ubereats-link" href="https://www.ubereats.com/fr/store/comme-chez-laeti/V8_zP6r5VJCzH848mH6lTQ?diningMode=PICKUP&utm_campaign=CM2508147-search-free-nonbrand-google-pas_e_all_acq_Global&utm_medium=search-free-nonbrand&utm_source=google-pas&rwg_token=AE37R_hfipcsP94py7qqQQrKmY70gxu1J3qfVmOgKB2KlyNzcIOOFowplt3Tn_X1o5U4N2kVDCIr11UwA2n9gp3ik53dFRdvgQ%3D%3D" target="_blank" rel="noopener"><img src="assets/icons/Uber_Eats_Logo_0.svg" alt="">Commander sur Uber Eats</a>
         </div>
       </div>
       <div class="hero-visual">
         <img src="assets/truck.jpeg" alt="Food truck Comme chez Laeti à Mérignac, burgers faits maison">
-        <div class="hero-badge">avis clients<b>4.9★</b>Google &amp; Guru</div>
+        <div class="hero-badge"><b>4.9★</b>Google</div>
       </div>
     </div>
   </header>
@@ -610,21 +632,18 @@
         <div>
           <p>Depuis plusieurs années, Laeti pose son food truck près du circuit de Mérignac pour régaler les habitués du déjeuner. Ici, tout est fait maison : burgers gourmands, plats du jour qui changent selon les saisons, et desserts qui font parler d'eux autant que les burgers.</p>
           <p>Ce qu'on retient surtout, c'est l'accueil. Les clients reviennent pour la cuisine généreuse, mais aussi pour Laeti elle-même : souriante, chaleureuse, toujours un mot gentil. Une vraie pause conviviale dans la journée.</p>
-          <p><strong>Conseil :</strong> les plats partent vite — un coup de téléphone avant de passer permet de mettre votre commande de côté.</p>
-          <div class="about-stats">
-            <div class="stat"><b>4.9/5</b><span>note moyenne clients</span></div>
-            <div class="stat"><b>100%</b><span>fait maison</span></div>
-          </div>
+          <p class="about-highlight"><strong>100&nbsp;% fait maison</strong> — produits frais, recettes généreuses, sans compromis.</p>
         </div>
         <div class="schedule-card">
           <h3>Horaires du camion</h3>
-          <div class="schedule-row"><span class="day">Lundi</span><span class="off">Fermé</span></div>
-          <div class="schedule-row"><span class="day">Mardi</span><span>Déjeuner</span></div>
-          <div class="schedule-row"><span class="day">Mercredi</span><span>Déjeuner</span></div>
-          <div class="schedule-row"><span class="day">Jeudi</span><span>Déjeuner</span></div>
-          <div class="schedule-row"><span class="day">Vendredi</span><span>Déjeuner</span></div>
-          <div class="schedule-row"><span class="day">Week-end</span><span class="off">Fermé</span></div>
-          <p class="schedule-note">Horaires indicatifs — à confirmer sur la fiche Google ou Instagram du camion. Fermeture possible en août.</p>
+          <div class="schedule-row"><span class="day">Lundi</span><span>11:00–14:00</span></div>
+          <div class="schedule-row"><span class="day">Mardi</span><span>11:00–14:00</span></div>
+          <div class="schedule-row"><span class="day">Mercredi</span><span>11:00–14:00</span></div>
+          <div class="schedule-row"><span class="day">Jeudi</span><span>11:00–14:00</span></div>
+          <div class="schedule-row"><span class="day">Vendredi</span><span>11:00–14:00</span></div>
+          <div class="schedule-row"><span class="day">Samedi</span><span class="off">Fermé</span></div>
+          <div class="schedule-row"><span class="day">Dimanche</span><span class="off">Fermé</span></div>
+          <p class="schedule-note">Horaires sur l'emplacement de Mérignac. Fermeture en juillet/août.</p>
         </div>
       </div>
     </div>
@@ -637,7 +656,6 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <span class="section-tag">Ce qu'on en dit</span>
           <h2>Avis clients</h2>
         </div>
       </div>
@@ -648,7 +666,7 @@
           <div class="stars">★★★★★</div>
           <div class="meta">Note moyenne sur les avis en ligne</div>
         </div>
-        <div class="src">Google · Restaurant Guru</div>
+        <div class="src">Google</div>
       </div>
 
       <div class="review-grid">
@@ -682,8 +700,7 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <span class="section-tag">Où nous trouver</span>
-          <h2>Adresse &amp; accès</h2>
+          <h2>Où nous trouver ?</h2>
         </div>
       </div>
       <div class="location-grid">
@@ -706,14 +723,11 @@
             <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
             <div>
               <h4>Service</h4>
-              <p>Du mardi au vendredi, sur le créneau du déjeuner</p>
-            </div>
-          </div>
-          <div class="loc-row">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.5 2L5 16M9 4l6 2 5.5-2-1.5 6M9 4v16M15 6v16"/></svg></span>
-            <div>
-              <h4>Repérer le camion</h4>
-              <p>Près du circuit de Mérignac — vérifiez la position du jour sur Instagram avant de venir.</p>
+              <p>Du lundi au vendredi :</p>
+              <ul>
+                <li>De 11:00 à 14:00 : Sur place, à emporter, et en livraison (Uber Eats)</li>
+                <li>De 18:00 à 20:30 : En livraison (Uber Eats)</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -735,7 +749,6 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <span class="section-tag">Restons en contact</span>
           <h2>Contact &amp; réseaux</h2>
         </div>
       </div>
@@ -743,41 +756,40 @@
 
         <a class="connect-card" href="https://maps.app.goo.gl/BKKZqKrbPCNPLvH96" target="_blank" rel="noopener">
           <span class="ic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-7.2-7-12a7 7 0 1 1 14 0c0 4.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            <img src="assets/icons/Google_Symbol_0.svg" alt="">
           </span>
           <span class="label">Google</span>
-          <span class="sub">Fiche, avis &amp; itinéraire</span>
         </a>
 
-        <a class="connect-card" href="https://www.ubereats.com/fr" target="_blank" rel="noopener">
+        <a class="connect-card" href="https://www.ubereats.com/fr/store/comme-chez-laeti/V8_zP6r5VJCzH848mH6lTQ?diningMode=PICKUP&utm_campaign=CM2508147-search-free-nonbrand-google-pas_e_all_acq_Global&utm_medium=search-free-nonbrand&utm_source=google-pas&rwg_token=AE37R_hfipcsP94py7qqQQrKmY70gxu1J3qfVmOgKB2KlyNzcIOOFowplt3Tn_X1o5U4N2kVDCIr11UwA2n9gp3ik53dFRdvgQ%3D%3D" target="_blank" rel="noopener">
           <span class="ic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a8 8 0 0 1 16 0M4 11v6a2 2 0 0 0 2 2h1v-8H4zm14 0v8h1a2 2 0 0 0 2-2v-6h-3zM10 19v-4h4v4"/></svg>
+            <img src="assets/icons/Uber_Eats_Logo_0.svg" alt="">
           </span>
           <span class="label">Uber Eats</span>
-          <span class="sub">Lien à confirmer / ajouter</span>
         </a>
 
         <a class="connect-card" href="https://www.facebook.com/comme.chezlaeti.3" target="_blank" rel="noopener">
           <span class="ic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8h-2a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5A1 1 0 0 1 15 10h2V8z"/></svg>
+            <img src="assets/icons/facebook.png" alt="">
           </span>
           <span class="label">Facebook</span>
-          <span class="sub">Actus &amp; emplacements</span>
         </a>
 
         <a class="connect-card" href="https://www.instagram.com/commechezlaeti/" target="_blank" rel="noopener">
           <span class="ic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg>
+            <img src="assets/icons/Instagram_Symbol_0.svg" alt="">
           </span>
           <span class="label">Instagram</span>
-          <span class="sub">@commechezlaeti</span>
         </a>
 
       </div>
 
       <div class="phone-line">
-        <a class="big-phone" href="tel:+33664225066">06 64 22 50 66</a>
-        <p>Pour réserver un burger ou poser vos questions, le plus simple reste un appel ou un SMS — surtout les jours de forte affluence.</p>
+        <div class="phone-line-contacts">
+          <a class="big-phone" href="tel:+33664225066">06 64 22 50 66</a>
+          <a class="big-email" href="mailto:adeva2004@gmail.com">adeva2004@gmail.com</a>
+        </div>
+        <p>Pour réserver ou poser vos questions, le plus simple reste un appel ou un SMS — surtout les jours de forte affluence.</p>
       </div>
     </div>
   </section>
@@ -789,17 +801,17 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <span class="section-tag">En images</span>
-          <h2>Galerie photos</h2>
+          <h2>En images</h2>
         </div>
       </div>
 
       <div class="gallery-grid">
         <div class="gallery-item big">
-          <img src="assets/burger.jpeg" alt="Burger maison avec frites, Comme chez Laeti">
+          <img src="assets/burger1.jpeg" alt="Burger gourmand fait maison">
+
         </div>
         <div class="gallery-item">
-          <img src="assets/burger1.jpeg" alt="Burger gourmand fait maison">
+          <img src="assets/dish1.jpeg" alt="Plat du jour fait maison">
         </div>
         <div class="gallery-item">
           <img src="assets/dish.jpeg" alt="Plat du jour fait maison">
@@ -808,7 +820,7 @@
           <img src="assets/interior.jpeg" alt="Comptoir et intérieur du food truck Comme chez Laeti">
         </div>
         <div class="gallery-item">
-          <img src="assets/desert.jpeg" alt="Dessert maison du food truck">
+          <img src="assets/desert.jpeg" alt="Dessert maison">
         </div>
       </div>
     </div>
