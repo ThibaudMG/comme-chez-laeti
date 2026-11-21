@@ -131,6 +131,13 @@
     transition:transform .2s ease, background .2s ease;
   }
   .nav-cta:hover{ background:var(--ember-dark); transform:translateY(-1px); }
+  .nav-cta-ember{
+    background:var(--ember);
+  }
+  .nav-cta-ember:hover{ background:var(--ember-dark); }
+  .nav-actions{
+    display:flex; align-items:center; gap:10px;
+  }
 
   .nav-toggle{ display:none; }
   .nav-mobile{ display:none; }
@@ -169,55 +176,127 @@
     padding:84px 0 64px;
     overflow:hidden;
   }
-  .hero-grid{
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:56px;
-    align-items:center;
-  }
-  .eyebrow{
-    display:inline-flex; align-items:center;
-    font-size:13px; font-weight:700;
-    letter-spacing:0.12em; text-transform:uppercase;
-    color:var(--ember-dark);
-    background:rgba(217,98,43,0.1);
-    padding:7px 14px;
-    border-radius:999px;
-    margin-bottom:22px;
-  }
-
   .hero h1{
-    font-size:clamp(44px, 6.4vw, 78px);
+    font-size:clamp(40px, 6.5vw, 78px);
     line-height:0.96;
-    margin-bottom:22px;
+    margin-bottom:0;
+    max-width:none;
   }
   .hero h1 .line2{ color:var(--ember); display:block; }
 
-  .hero p.lede{
+  .offer{
+    padding:64px 0;
+  }
+  .offer-alt{ background:var(--paper); }
+  .offer .wrap{ max-width:720px; }
+  .offer .wrap.offer-split{
+    max-width:1140px;
+    display:grid;
+    grid-template-columns:1.25fr 0.75fr;
+    gap:48px;
+    align-items:start;
+  }
+  .menu-block .menu-subtitle{
+    margin:0 0 6px;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink-soft);
+  }
+  .menu-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .menu-list li{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    padding:11px 0;
+    border-bottom:1px solid var(--line);
+    font-size:16px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .menu-list li:last-child{ border-bottom:none; }
+  .menu-list .ico{
+    flex:none;
+    width:1.4em;
+    text-align:center;
+    font-size:18px;
+    line-height:1;
+  }
+  .offer h2{
+    font-size:clamp(28px, 4vw, 40px);
+    margin-bottom:18px;
+  }
+  .offer p.lede{
     font-size:19px;
     color:var(--ink-soft);
-    max-width:480px;
-    margin-bottom:32px;
+    margin-bottom:28px;
   }
-
   .hero-actions{
     display:flex; gap:20px; flex-wrap:wrap; align-items:center;
   }
-  .hero-ubereats-link{
-    display:inline-flex; align-items:center; gap:12px;
-    font-weight:700; font-size:14px;
-    letter-spacing:0.03em; text-transform:uppercase;
-    text-decoration:underline; text-decoration-color:var(--ember);
-    text-underline-offset:4px;
+
+  .carousel{
+    position:relative;
+    border-radius:18px;
+    overflow:hidden;
+    aspect-ratio:1/1;
+    max-width:360px;
+    margin-left:auto;
+    align-self:center;
+    background:var(--cream-deep);
+    box-shadow:var(--shadow);
+  }
+  .carousel-track{
+    display:flex;
+    height:100%;
+    transition:transform .45s ease;
+  }
+  .carousel-slide{
+    flex:0 0 100%;
+    height:100%;
+  }
+  .carousel-slide img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .carousel-btn{
+    position:absolute; top:50%;
+    transform:translateY(-50%);
+    width:42px; height:42px;
+    border:none; border-radius:50%;
+    background:rgba(255,253,248,0.92);
     color:var(--ink);
-    transition:color .2s ease, text-decoration-color .2s ease;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 16px rgba(58,42,32,0.18);
+    transition:background .2s ease, transform .2s ease;
   }
-  .hero-ubereats-link:hover{
-    color:var(--ember-dark);
-    text-decoration-color:var(--ember-dark);
+  .carousel-btn:hover{ background:var(--paper); }
+  .carousel-btn:focus-visible{ outline:2px solid var(--ember); outline-offset:2px; }
+  .carousel-btn svg{ width:18px; height:18px; }
+  .carousel-btn.prev{ left:12px; }
+  .carousel-btn.next{ right:12px; }
+  .carousel-dots{
+    position:absolute; left:0; right:0; bottom:14px;
+    display:flex; justify-content:center; gap:8px;
   }
-  .hero-ubereats-link img{
-    width:50px; height:50px; object-fit:contain; flex-shrink:0;
+  .carousel-dots button{
+    width:8px; height:8px; padding:0;
+    border:none; border-radius:50%;
+    background:rgba(255,253,248,0.45);
+    cursor:pointer;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .carousel-dots button[aria-current="true"]{
+    background:var(--paper);
+    transform:scale(1.25);
   }
   .btn{
     display:inline-flex; align-items:center; gap:8px;
@@ -242,56 +321,14 @@
   }
   .btn-ghost:hover{ background:var(--ink); color:var(--cream); transform:translateY(-2px); }
 
-  .hero-visual{
-    position:relative;
-    aspect-ratio:4/5;
-    border-radius:28px;
-    background:linear-gradient(160deg, var(--mustard), var(--ember));
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:var(--shadow);
-    overflow:hidden;
-  }
-  .hero-visual .ph-label{
-    position:absolute; inset:0;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:10px; text-align:center; padding:30px;
-    color:rgba(255,253,248,0.92);
-    font-family:'Archivo', sans-serif;
-  }
-  .hero-visual .ph-label strong{
-    font-family:'Anton', sans-serif;
-    font-size:22px; text-transform:uppercase; letter-spacing:0.03em;
-  }
-  .hero-visual .ph-label span{ font-size:13px; opacity:0.85; max-width:240px; }
-  .hero-visual img{
-    width:100%; height:100%;
-    object-fit:cover;
-    position:absolute; inset:0;
-  }
-  .hero-badge{
-    position:absolute; bottom:-26px; left:-26px;
-    background:var(--ink);
-    color:var(--cream);
-    border-radius:50%;
-    width:128px; height:128px;
-    display:flex; align-items:center; justify-content:center;
-    text-align:center;
-    font-family:'Anton', sans-serif;
-    font-size:14px;
-    line-height:1.25;
-    letter-spacing:0.02em;
-    text-transform:uppercase;
-    box-shadow:0 12px 26px rgba(58,42,32,0.3);
-    transform:rotate(-8deg);
-  }
-  .hero-badge b{ display:block; font-size:30px; color:var(--mustard); }
-
   @media (max-width:900px){
-    .hero-grid{ grid-template-columns:1fr; gap:40px; }
-    .hero{ padding:56px 0 48px; text-align:left; }
-    .hero-visual{ aspect-ratio:16/10; }
-    .hero-badge{ width:104px; height:104px; font-size:12px; bottom:-18px; left:-14px; }
-    .hero-badge b{ font-size:24px; }
+    .hero{ padding:56px 0 40px; text-align:left; }
+    .offer{ padding:48px 0; }
+    .offer .wrap.offer-split{
+      grid-template-columns:1fr;
+      gap:32px;
+    }
+    .carousel{ aspect-ratio:16/11; max-width:100%; margin-left:0; }
   }
 
   /* ===== Section shell ===== */
@@ -315,7 +352,7 @@
   .about .section-tag,
   .about .section-head h2{ color:var(--ink); }
   .about-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;
+    max-width:720px;
   }
   .about p{ color:var(--ink-soft); margin:0 0 18px; font-size:17px; }
   .about p:last-child{ margin-bottom:0; }
@@ -361,10 +398,6 @@
     margin-top:18px; font-size:13px; color:rgba(251,243,231,0.7);
     border-top:1px dashed rgba(251,243,231,0.2);
     padding-top:16px;
-  }
-
-  @media (max-width:900px){
-    .about-grid{ grid-template-columns:1fr; gap:40px; }
   }
 
   /* ===== Avis ===== */
@@ -445,6 +478,19 @@
   }
   .loc-row p{ margin:0; font-size:16px; }
   .loc-row a{ text-decoration:underline; text-decoration-color:var(--ember); }
+  .location-card .schedule-card{
+    padding:18px 20px;
+    border-radius:14px;
+    box-shadow:none;
+  }
+  .location-card .schedule-card h3{
+    font-size:15px;
+    margin-bottom:10px;
+  }
+  .location-card .schedule-row{
+    padding:7px 0;
+    font-size:13px;
+  }
 
   .map-frame{
     border-radius:var(--radius);
@@ -464,7 +510,7 @@
   .connect .section-tag{ color:var(--mustard); }
   .connect h2{ color:var(--cream); }
   .connect-grid{
-    display:grid; grid-template-columns:repeat(4, 1fr); gap:18px;
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;
   }
   .connect-card{
     background:rgba(251,243,231,0.05);
@@ -511,44 +557,49 @@
   .phone-line .big-email:hover{ text-decoration:underline; }
   .phone-line p{ margin:0; color:rgba(251,243,231,0.7); font-size:14px; max-width:340px; }
 
+  .contact-form{
+    margin-top:40px; padding-top:34px;
+    border-top:1px dashed rgba(251,243,231,0.22);
+    display:grid; gap:16px;
+    max-width:560px;
+  }
+  .contact-form label{
+    display:block;
+    font-size:13px; font-weight:700;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:rgba(251,243,231,0.75);
+    margin-bottom:8px;
+  }
+  .contact-form input,
+  .contact-form textarea{
+    width:100%;
+    padding:14px 16px;
+    border-radius:12px;
+    border:1px solid rgba(251,243,231,0.22);
+    background:rgba(251,243,231,0.06);
+    color:var(--cream);
+    font:inherit;
+    font-size:16px;
+    resize:vertical;
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder{
+    color:rgba(251,243,231,0.45);
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus{
+    outline:none;
+    border-color:var(--ember);
+    background:rgba(251,243,231,0.1);
+  }
+  .contact-form textarea{ min-height:140px; }
+  .contact-form .btn{ justify-self:start; cursor:pointer; border:none; }
+
   @media (max-width:900px){
     .connect-grid{ grid-template-columns:repeat(2, 1fr); }
   }
   @media (max-width:520px){
     .connect-grid{ grid-template-columns:1fr; }
-  }
-
-  /* ===== Galerie ===== */
-  .gallery{ background:var(--cream); }
-  .gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    grid-auto-rows:160px;
-    gap:14px;
-  }
-  .gallery-item{
-    border-radius:14px;
-    overflow:hidden;
-    position:relative;
-    background:linear-gradient(150deg, var(--cream-deep), var(--mustard) 140%);
-    display:flex; align-items:center; justify-content:center;
-    border:1px solid var(--line);
-  }
-  .gallery-item img{ width:100%; height:100%; object-fit:cover; }
-  .gallery-item .ph{
-    text-align:center; padding:14px; color:var(--ink-soft);
-  }
-  .gallery-item .ph svg{ width:26px; height:26px; margin-bottom:8px; color:var(--ember); }
-  .gallery-item .ph span{ display:block; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; }
-  .gallery-item.big{ grid-column:span 2; grid-row:span 2; }
-
-  @media (max-width:900px){
-    .gallery-grid{ grid-template-columns:repeat(2, 1fr); grid-auto-rows:160px; }
-    .gallery-item.big{ grid-column:span 2; grid-row:span 1; }
-  }
-
-  .gallery-note{
-    text-align:center; margin-top:30px; font-size:14px; color:var(--ink-soft);
   }
 
   /* ===== Footer ===== */
@@ -578,23 +629,23 @@
   <div class="nav-inner">
     <a href="#main" class="brand">Comme chez Laeti</a>
     <ul class="nav-links">
-      <li><a href="#presentation">Présentation</a></li>
       <li><a href="#avis">Avis</a></li>
       <li><a href="#adresse">Adresse</a></li>
-      <li><a href="#galerie">Galerie</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a class="nav-cta" href="#adresse">Nous trouver</a>
+    <div class="nav-actions">
+      <a class="nav-cta" href="#adresse">Me trouver</a>
+      <a class="nav-cta nav-cta-ember" href="#contact">Me contacter</a>
+    </div>
     <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navMobile">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
   <div class="nav-mobile" id="navMobile">
-    <a href="#presentation">Présentation</a>
     <a href="#avis">Avis</a>
     <a href="#adresse">Adresse</a>
-    <a href="#galerie">Galerie</a>
     <a href="#contact">Contact</a>
+    <a href="#presentation">Présentation</a>
   </div>
 </nav>
 
@@ -602,49 +653,62 @@
 
   <!-- ===== HERO ===== -->
   <header class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">Burgers &amp; cuisine maison</span>
-        <h1>La cuisine,<span class="line2">comme à la maison.</span></h1>
-        <p class="lede">Laeti cuisine chaque jour des burgers et des plats gourmands et généreux, avec des produits frais et de saison. Une cuisine familiale, un accueil qui l'est tout autant.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#adresse">Trouver le camion</a>
-          <a class="hero-ubereats-link" href="https://www.ubereats.com/fr/store/comme-chez-laeti/V8_zP6r5VJCzH848mH6lTQ?diningMode=PICKUP&utm_campaign=CM2508147-search-free-nonbrand-google-pas_e_all_acq_Global&utm_medium=search-free-nonbrand&utm_source=google-pas&rwg_token=AE37R_hfipcsP94py7qqQQrKmY70gxu1J3qfVmOgKB2KlyNzcIOOFowplt3Tn_X1o5U4N2kVDCIr11UwA2n9gp3ik53dFRdvgQ%3D%3D" target="_blank" rel="noopener"><img src="assets/icons/Uber_Eats_Logo_0.svg" alt="">Commander sur Uber Eats</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <img src="assets/truck.jpeg" alt="Food truck Comme chez Laeti à Mérignac, burgers faits maison">
-        <div class="hero-badge"><b>4.9★</b>Google</div>
-      </div>
+    <div class="wrap">
+      <h1>La cuisine,<span class="line2">presque comme à la maison.</span></h1>
     </div>
   </header>
 
-  <!-- ===== PRÉSENTATION ===== -->
-  <section id="presentation" class="about reveal">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <span class="section-tag">L'histoire</span>
-          <h2>Comme chez Laeti</h2>
+  <!-- ===== FOOD TRUCK ===== -->
+  <section id="food-truck" class="offer reveal">
+    <div class="wrap offer-split">
+      <div class="offer-copy">
+        <h2>Food Truck</h2>
+        <p class="lede">Je vous cuisine chaque jour des burgers gourmands, des plats et des desserts généreux, avec des produits frais et de saison. Une cuisine familiale, et un accueil qui l'est tout autant.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#adresse">Trouver le camion</a>
         </div>
       </div>
-      <div class="about-grid">
-        <div>
-          <p>Depuis plusieurs années, Laeti pose son food truck près du circuit de Mérignac pour régaler les habitués du déjeuner. Ici, tout est fait maison : burgers gourmands, plats du jour qui changent selon les saisons, et desserts qui font parler d'eux autant que les burgers.</p>
-          <p>Ce qu'on retient surtout, c'est l'accueil. Les clients reviennent pour la cuisine généreuse, mais aussi pour Laeti elle-même : souriante, chaleureuse, toujours un mot gentil. Une vraie pause conviviale dans la journée.</p>
-          <p class="about-highlight"><strong>100&nbsp;% fait maison</strong> — produits frais, recettes généreuses, sans compromis.</p>
+      <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Photos du food truck">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="assets/truck.jpeg" alt="Food truck Comme chez Laeti"></div>
+          <div class="carousel-slide"><img src="assets/burger1.jpeg" alt="Burger gourmand fait maison"></div>
+          <div class="carousel-slide"><img src="assets/dish1.jpeg" alt="Plat du jour fait maison"></div>
+          <div class="carousel-slide"><img src="assets/burger.jpeg" alt="Burger Comme chez Laeti"></div>
+          <div class="carousel-slide"><img src="assets/dish2.jpeg" alt="Assiette généreuse"></div>
         </div>
-        <div class="schedule-card">
-          <h3>Horaires du camion</h3>
-          <div class="schedule-row"><span class="day">Lundi</span><span>11:00–14:00</span></div>
-          <div class="schedule-row"><span class="day">Mardi</span><span>11:00–14:00</span></div>
-          <div class="schedule-row"><span class="day">Mercredi</span><span>11:00–14:00</span></div>
-          <div class="schedule-row"><span class="day">Jeudi</span><span>11:00–14:00</span></div>
-          <div class="schedule-row"><span class="day">Vendredi</span><span>11:00–14:00</span></div>
-          <div class="schedule-row"><span class="day">Samedi</span><span class="off">Fermé</span></div>
-          <div class="schedule-row"><span class="day">Dimanche</span><span class="off">Fermé</span></div>
-          <p class="schedule-note">Horaires sur l'emplacement de Mérignac. Fermeture en juillet/août.</p>
+        <button class="carousel-btn prev" type="button" aria-label="Image précédente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="carousel-btn next" type="button" aria-label="Image suivante">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="carousel-dots" role="tablist" aria-label="Choisir une photo"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CUISINE ÉVÈNEMENTIELLE ===== -->
+  <section id="evenementiel" class="offer offer-alt reveal">
+    <div class="wrap offer-split">
+      <div class="offer-copy">
+        <h2>Cuisine évènementielle</h2>
+        <p class="lede">Je vous prépare une cuisine artisanale, gourmande et généreuse à partager sans chichis, directement au cœur de votre quotidien, au travail sur site comme à la maison.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Me contacter</a>
         </div>
+      </div>
+      <div class="menu-block">
+        <p class="menu-subtitle">Les thèmes que je vous propose, au choix&nbsp;:</p>
+        <ul class="menu-list" aria-label="Menus événementiels">
+        <li><span class="ico" aria-hidden="true">🌱</span>100&nbsp;% terroir</li>
+        <li><span class="ico" aria-hidden="true">🌍</span>Saveur du monde</li>
+        <li><span class="ico" aria-hidden="true">❄️</span>L'hémisphère nord</li>
+        <li><span class="ico" aria-hidden="true">🌴</span>L'exotique</li>
+        <li><span class="ico" aria-hidden="true">🍔</span>Burgers gourmands</li>
+        <li><span class="ico" aria-hidden="true">🍲</span>Le festin Gascon</li>
+        <li><span class="ico" aria-hidden="true">🛋️</span>Pause gourmande sur canapé</li>
+        <li><span class="ico" aria-hidden="true">🕰️</span>Menu nostalgie</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -719,16 +783,15 @@
               <p><a href="tel:+33664225066">06 64 22 50 66</a></p>
             </div>
           </div>
-          <div class="loc-row">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-            <div>
-              <h4>Service</h4>
-              <p>Du lundi au vendredi :</p>
-              <ul>
-                <li>De 11:00 à 14:00 : Sur place, à emporter, et en livraison (Uber Eats)</li>
-                <li>De 18:00 à 20:30 : En livraison (Uber Eats)</li>
-              </ul>
-            </div>
+          <div class="schedule-card">
+            <h3>Horaires du camion</h3>
+            <div class="schedule-row"><span class="day">Lundi</span><span>11:00–14:00</span></div>
+            <div class="schedule-row"><span class="day">Mardi</span><span>11:00–14:00</span></div>
+            <div class="schedule-row"><span class="day">Mercredi</span><span>11:00–14:00</span></div>
+            <div class="schedule-row"><span class="day">Jeudi</span><span>11:00–14:00</span></div>
+            <div class="schedule-row"><span class="day">Vendredi</span><span>11:00–14:00</span></div>
+            <div class="schedule-row"><span class="day">Samedi</span><span class="off">Fermé</span></div>
+            <div class="schedule-row"><span class="day">Dimanche</span><span class="off">Fermé</span></div>
           </div>
         </div>
         <div class="map-frame">
@@ -761,13 +824,6 @@
           <span class="label">Google</span>
         </a>
 
-        <a class="connect-card" href="https://www.ubereats.com/fr/store/comme-chez-laeti/V8_zP6r5VJCzH848mH6lTQ?diningMode=PICKUP&utm_campaign=CM2508147-search-free-nonbrand-google-pas_e_all_acq_Global&utm_medium=search-free-nonbrand&utm_source=google-pas&rwg_token=AE37R_hfipcsP94py7qqQQrKmY70gxu1J3qfVmOgKB2KlyNzcIOOFowplt3Tn_X1o5U4N2kVDCIr11UwA2n9gp3ik53dFRdvgQ%3D%3D" target="_blank" rel="noopener">
-          <span class="ic">
-            <img src="assets/icons/Uber_Eats_Logo_0.svg" alt="">
-          </span>
-          <span class="label">Uber Eats</span>
-        </a>
-
         <a class="connect-card" href="https://www.facebook.com/comme.chezlaeti.3" target="_blank" rel="noopener">
           <span class="ic">
             <img src="assets/icons/facebook.png" alt="">
@@ -791,37 +847,38 @@
         </div>
         <p>Pour réserver ou poser vos questions, le plus simple reste un appel ou un SMS — surtout les jours de forte affluence.</p>
       </div>
+
+      <form class="contact-form" action="https://formsubmit.co/adeva2004@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Contact — Comme chez Laeti">
+        <input type="hidden" name="_captcha" value="false">
+        <div>
+          <label for="contact-email">Email</label>
+          <input id="contact-email" type="email" name="email" placeholder="votre@email.com" required autocomplete="email">
+        </div>
+        <div>
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" placeholder="Votre message…" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Envoyer</button>
+      </form>
     </div>
   </section>
 
   <hr class="divider" style="border-color: rgba(251,243,231,0.18); background: var(--ink);">
 
-  <!-- ===== GALERIE ===== -->
-  <section id="galerie" class="gallery reveal">
+  <!-- ===== PRÉSENTATION ===== -->
+  <section id="presentation" class="about reveal">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <h2>En images</h2>
+          <span class="section-tag">L'histoire</span>
+          <h2>Comme chez Laeti</h2>
         </div>
       </div>
-
-      <div class="gallery-grid">
-        <div class="gallery-item big">
-          <img src="assets/burger1.jpeg" alt="Burger gourmand fait maison">
-
-        </div>
-        <div class="gallery-item">
-          <img src="assets/dish1.jpeg" alt="Plat du jour fait maison">
-        </div>
-        <div class="gallery-item">
-          <img src="assets/dish.jpeg" alt="Plat du jour fait maison">
-        </div>
-        <div class="gallery-item">
-          <img src="assets/interior.jpeg" alt="Comptoir et intérieur du food truck Comme chez Laeti">
-        </div>
-        <div class="gallery-item">
-          <img src="assets/desert.jpeg" alt="Dessert maison">
-        </div>
+      <div class="about-grid">
+        <p>Depuis plusieurs années, Laeti pose son food truck près du circuit de Mérignac pour régaler les habitués du déjeuner. Ici, tout est fait maison : burgers gourmands, plats du jour qui changent selon les saisons, et desserts qui font parler d'eux autant que les burgers.</p>
+        <p>Ce qu'on retient surtout, c'est l'accueil. Les clients reviennent pour la cuisine généreuse, mais aussi pour Laeti elle-même : souriante, chaleureuse, toujours un mot gentil. Une vraie pause conviviale dans la journée.</p>
+        <p class="about-highlight"><strong>100&nbsp;% fait maison</strong> — produits frais, recettes généreuses, sans compromis.</p>
       </div>
     </div>
   </section>
@@ -868,6 +925,51 @@
   } else {
     reveals.forEach(function(el){ el.classList.add('is-visible'); });
   }
+
+  // Carousel
+  document.querySelectorAll('[data-carousel]').forEach(function(root){
+    var track = root.querySelector('.carousel-track');
+    var slides = Array.prototype.slice.call(root.querySelectorAll('.carousel-slide'));
+    var prev = root.querySelector('.carousel-btn.prev');
+    var next = root.querySelector('.carousel-btn.next');
+    var dotsWrap = root.querySelector('.carousel-dots');
+    var index = 0;
+    var timer = null;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    slides.forEach(function(_, i){
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Aller à la photo ' + (i + 1));
+      dot.addEventListener('click', function(){ goTo(i); restart(); });
+      dotsWrap.appendChild(dot);
+    });
+
+    function render(){
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      Array.prototype.forEach.call(dotsWrap.children, function(dot, i){
+        dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+      });
+    }
+
+    function goTo(i){
+      index = (i + slides.length) % slides.length;
+      render();
+    }
+
+    function restart(){
+      if (reduceMotion) return;
+      clearInterval(timer);
+      timer = setInterval(function(){ goTo(index + 1); }, 4500);
+    }
+
+    prev.addEventListener('click', function(){ goTo(index - 1); restart(); });
+    next.addEventListener('click', function(){ goTo(index + 1); restart(); });
+    root.addEventListener('mouseenter', function(){ clearInterval(timer); });
+    root.addEventListener('mouseleave', restart);
+    render();
+    restart();
+  });
 </script>
 
 </body>
