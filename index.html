@@ -27,7 +27,11 @@
   }
 
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{
+    scroll-behavior:smooth;
+    width:100%;
+    overflow-x:hidden;
+  }
 
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
@@ -36,12 +40,19 @@
 
   body{
     margin:0;
+    width:100%;
+    overflow-x:hidden;
     background:var(--cream);
     color:var(--ink);
     font-family:'Archivo', sans-serif;
-    font-size:17px;
+    font-size:clamp(16px, 2.5vw, 17px);
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
+  }
+
+  main, .nav, footer, section{
+    width:100%;
+    max-width:100%;
   }
 
   h1,h2,h3{
@@ -57,9 +68,10 @@
   img{max-width:100%; display:block;}
 
   .wrap{
+    width:100%;
     max-width:1140px;
     margin:0 auto;
-    padding:0 28px;
+    padding:0 clamp(16px, 4vw, 28px);
   }
 
   /* Texture de fond façon papier kraft, légère */
@@ -95,18 +107,19 @@
     border-bottom:1px solid var(--line);
   }
   .nav-inner{
-    max-width:1140px; margin:0 auto; padding:14px 28px;
-    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    max-width:1140px; margin:0 auto; padding:14px clamp(16px, 4vw, 28px);
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
   }
   .brand{
     font-family:'Anton', sans-serif;
-    font-size:22px;
+    font-size:clamp(18px, 4vw, 22px);
     letter-spacing:0.02em;
     text-decoration:none;
     white-space:nowrap;
+    min-width:0;
   }
   .nav-links{
-    display:flex; gap:26px; list-style:none; margin:0; padding:0;
+    display:flex; gap:clamp(14px, 2vw, 26px); list-style:none; margin:0; padding:0;
   }
   .nav-links a{
     text-decoration:none;
@@ -142,15 +155,18 @@
   .nav-toggle{ display:none; }
   .nav-mobile{ display:none; }
 
-  @media (max-width:760px){
+  @media (max-width:960px){
     .nav-links{ display:none; }
+    .nav-actions{ display:none; }
     .nav-toggle{
       display:inline-flex; align-items:center; justify-content:center;
-      width:40px; height:40px;
+      width:44px; height:44px;
       border-radius:10px;
       border:1px solid var(--line);
       background:transparent;
+      color:var(--ink);
       cursor:pointer;
+      flex:none;
     }
     .nav-toggle svg{width:20px;height:20px;}
     .nav-mobile{
@@ -161,40 +177,54 @@
     }
     .nav-mobile.open{ display:flex; }
     .nav-mobile a{
-      padding:14px 28px;
+      padding:16px clamp(16px, 4vw, 28px);
       text-decoration:none;
       font-weight:600; letter-spacing:0.03em; text-transform:uppercase;
       font-size:14px;
       color:var(--ink);
       border-bottom:1px solid var(--line);
     }
+    .nav-mobile a.nav-mobile-cta{
+      background:var(--ink);
+      color:var(--cream);
+      border-bottom:none;
+      margin-top:4px;
+    }
+    .nav-mobile a.nav-mobile-cta-ember{
+      background:var(--ember);
+      color:var(--cream);
+      border-bottom:none;
+    }
   }
 
   /* ===== Hero ===== */
   .hero{
     position:relative;
-    padding:84px 0 64px;
+    padding:clamp(40px, 8vw, 84px) 0 clamp(32px, 6vw, 64px);
     overflow:hidden;
   }
   .hero h1{
-    font-size:clamp(40px, 6.5vw, 78px);
+    font-size:clamp(34px, 9vw, 78px);
     line-height:0.96;
     margin-bottom:0;
     max-width:none;
+    word-wrap:break-word;
   }
   .hero h1 .line2{ color:var(--ember); display:block; }
 
   .offer{
-    padding:64px 0;
+    padding:clamp(40px, 7vw, 64px) 0;
   }
   .offer-alt{ background:var(--paper); }
-  .offer .wrap{ max-width:720px; }
-  .offer .wrap.offer-split{
-    max-width:1140px;
+  .offer-split{
     display:grid;
-    grid-template-columns:1.25fr 0.75fr;
-    gap:48px;
+    grid-template-columns:minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap:clamp(28px, 5vw, 48px);
     align-items:start;
+  }
+  .offer-split > *{
+    min-width:0;
+    max-width:100%;
   }
   .menu-block .menu-subtitle{
     margin:0 0 6px;
@@ -233,32 +263,36 @@
     margin-bottom:18px;
   }
   .offer p.lede{
-    font-size:19px;
+    font-size:clamp(16px, 2.5vw, 19px);
     color:var(--ink-soft);
     margin-bottom:28px;
   }
   .hero-actions{
-    display:flex; gap:20px; flex-wrap:wrap; align-items:center;
+    display:flex; gap:14px; flex-wrap:wrap; align-items:center;
   }
 
   .carousel{
     position:relative;
-    border-radius:18px;
+    border-radius:clamp(12px, 2vw, 18px);
     overflow:hidden;
-    aspect-ratio:1/1;
-    max-width:360px;
-    margin-left:auto;
-    align-self:center;
+    aspect-ratio:16/11;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    align-self:stretch;
     background:var(--cream-deep);
     box-shadow:var(--shadow);
   }
   .carousel-track{
+    position:absolute;
+    inset:0;
     display:flex;
     height:100%;
     transition:transform .45s ease;
   }
   .carousel-slide{
     flex:0 0 100%;
+    width:100%;
     height:100%;
   }
   .carousel-slide img{
@@ -299,7 +333,7 @@
     transform:scale(1.25);
   }
   .btn{
-    display:inline-flex; align-items:center; gap:8px;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
     padding:15px 26px;
     border-radius:999px;
     font-weight:700; font-size:14px;
@@ -307,6 +341,7 @@
     text-decoration:none;
     transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
     border:2px solid transparent;
+    text-align:center;
   }
   .btn-primary{
     background:var(--ember);
@@ -321,23 +356,32 @@
   }
   .btn-ghost:hover{ background:var(--ink); color:var(--cream); transform:translateY(-2px); }
 
-  @media (max-width:900px){
-    .hero{ padding:56px 0 40px; text-align:left; }
-    .offer{ padding:48px 0; }
-    .offer .wrap.offer-split{
-      grid-template-columns:1fr;
-      gap:32px;
+  @media (min-width:961px){
+    .carousel{
+      aspect-ratio:1/1;
+      max-width:360px;
+      margin-left:auto;
+      align-self:center;
     }
-    .carousel{ aspect-ratio:16/11; max-width:100%; margin-left:0; }
+  }
+
+  @media (max-width:960px){
+    .hero{ text-align:left; }
+    .offer-split{
+      grid-template-columns:1fr;
+      gap:28px;
+    }
+    .hero-actions{ width:100%; }
+    .hero-actions .btn{ width:100%; }
   }
 
   /* ===== Section shell ===== */
-  section{ position:relative; padding:90px 0; }
+  section{ position:relative; padding:clamp(52px, 10vw, 90px) 0; }
   .section-head{
     display:flex; align-items:baseline; justify-content:space-between;
-    gap:24px; margin-bottom:44px; flex-wrap:wrap;
+    gap:16px; margin-bottom:clamp(28px, 5vw, 44px); flex-wrap:wrap;
   }
-  .section-head h2{ font-size:clamp(30px, 4vw, 44px); }
+  .section-head h2{ font-size:clamp(28px, 6vw, 44px); }
   .section-tag{
     font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
     color:var(--sage);
@@ -366,7 +410,7 @@
   }
   .about-highlight strong{
     font-family:'Anton', sans-serif;
-    font-size:26px;
+    font-size:clamp(20px, 5vw, 26px);
     font-weight:400;
     color:var(--ember);
     letter-spacing:0.02em;
@@ -377,7 +421,7 @@
     background:var(--ink);
     color:var(--cream);
     border-radius:var(--radius);
-    padding:34px;
+    padding:clamp(20px, 4vw, 34px);
     box-shadow:var(--shadow);
   }
   .schedule-card h3{
@@ -407,13 +451,13 @@
     background:var(--paper);
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:24px 28px;
+    padding:clamp(18px, 3vw, 24px) clamp(18px, 3vw, 28px);
     margin-bottom:36px;
     box-shadow:var(--shadow);
   }
   .review-rating .score{
     font-family:'Anton', sans-serif;
-    font-size:48px;
+    font-size:clamp(36px, 8vw, 48px);
     color:var(--ember);
     line-height:1;
   }
@@ -426,13 +470,13 @@
   }
 
   .review-grid{
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(14px, 2vw, 22px);
   }
   .review-card{
     background:var(--paper);
     border:1px solid var(--line);
     border-radius:16px;
-    padding:26px;
+    padding:clamp(18px, 3vw, 26px);
     position:relative;
   }
   .review-card .stars{ color:var(--mustard); font-size:15px; margin-bottom:12px; letter-spacing:2px; }
@@ -448,21 +492,25 @@
   .reviews-cta{ text-align:center; margin-top:40px; }
 
   @media (max-width:900px){
-    .review-grid{ grid-template-columns:1fr; }
+    .review-grid{ grid-template-columns:1fr 1fr; }
     .review-rating{ flex-wrap:wrap; }
     .review-rating .src{ margin-left:0; }
+  }
+  @media (max-width:600px){
+    .review-grid{ grid-template-columns:1fr; }
+    .reviews-cta .btn{ width:100%; }
   }
 
   /* ===== Adresse / Map ===== */
   .location{ background:var(--paper); }
   .location-grid{
-    display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:stretch;
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:clamp(24px, 4vw, 48px); align-items:stretch;
   }
   .location-card{
     background:var(--cream);
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:32px;
+    padding:clamp(20px, 4vw, 32px);
     display:flex; flex-direction:column; gap:22px;
   }
   .loc-row{ display:flex; gap:14px; align-items:flex-start; }
@@ -497,12 +545,15 @@
     overflow:hidden;
     border:1px solid var(--line);
     box-shadow:var(--shadow);
-    min-height:380px;
+    min-height:clamp(240px, 50vw, 380px);
+    height:100%;
   }
-  .map-frame iframe{ width:100%; height:100%; min-height:380px; border:0; display:block; }
+  .map-frame iframe{ width:100%; height:100%; min-height:clamp(240px, 50vw, 380px); border:0; display:block; }
 
   @media (max-width:900px){
     .location-grid{ grid-template-columns:1fr; }
+    .map-frame{ min-height:280px; }
+    .map-frame iframe{ min-height:280px; }
   }
 
   /* ===== Contact & réseaux ===== */
@@ -510,13 +561,13 @@
   .connect .section-tag{ color:var(--mustard); }
   .connect h2{ color:var(--cream); }
   .connect-grid{
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:clamp(12px, 2vw, 18px);
   }
   .connect-card{
     background:rgba(251,243,231,0.05);
     border:1px solid rgba(251,243,231,0.16);
     border-radius:16px;
-    padding:26px 22px;
+    padding:clamp(18px, 3vw, 26px) clamp(16px, 3vw, 22px);
     text-decoration:none;
     color:var(--cream);
     display:flex; flex-direction:column; gap:14px;
@@ -537,28 +588,31 @@
   .connect-card .sub{ font-size:13px; color:rgba(251,243,231,0.65); }
 
   .phone-line{
-    margin-top:40px; padding-top:34px;
+    margin-top:clamp(28px, 5vw, 40px); padding-top:clamp(24px, 4vw, 34px);
     border-top:1px dashed rgba(251,243,231,0.22);
     display:flex; align-items:center; justify-content:space-between; gap:24px;
     flex-wrap:wrap;
   }
   .phone-line .big-phone{
-    font-family:'Anton', sans-serif; font-size:clamp(28px,4vw,40px);
+    font-family:'Anton', sans-serif; font-size:clamp(26px,7vw,40px);
     color:var(--mustard); text-decoration:none;
   }
   .phone-line-contacts{
     display:flex; flex-direction:column; gap:10px;
+    min-width:0;
   }
   .phone-line .big-email{
-    font-size:clamp(16px, 2.5vw, 20px);
+    font-size:clamp(15px, 3.5vw, 20px);
     font-weight:600;
     color:var(--mustard); text-decoration:none;
+    overflow-wrap:anywhere;
+    word-break:break-word;
   }
   .phone-line .big-email:hover{ text-decoration:underline; }
   .phone-line p{ margin:0; color:rgba(251,243,231,0.7); font-size:14px; max-width:340px; }
 
   .contact-form{
-    margin-top:40px; padding-top:34px;
+    margin-top:clamp(28px, 5vw, 40px); padding-top:clamp(24px, 4vw, 34px);
     border-top:1px dashed rgba(251,243,231,0.22);
     display:grid; gap:16px;
     max-width:560px;
@@ -600,18 +654,30 @@
   }
   @media (max-width:520px){
     .connect-grid{ grid-template-columns:1fr; }
+    .contact-form .btn{ width:100%; justify-self:stretch; }
+    .phone-line p{ max-width:none; }
   }
 
   /* ===== Footer ===== */
   footer{
     background:var(--ink); color:rgba(251,243,231,0.65);
-    padding:44px 0 30px; text-align:center; font-size:13px;
+    padding:clamp(32px, 6vw, 44px) 0 30px; text-align:center; font-size:13px;
   }
   footer .fbrand{
-    font-family:'Anton', sans-serif; color:var(--cream); font-size:20px;
+    font-family:'Anton', sans-serif; color:var(--cream); font-size:clamp(18px, 4vw, 20px);
     text-transform:uppercase; margin-bottom:10px; letter-spacing:0.02em;
   }
+  footer p{ margin:0 0 8px; overflow-wrap:anywhere; }
   footer a{ color:rgba(251,243,231,0.8); text-decoration:underline; }
+
+  /* Small phones */
+  @media (max-width:380px){
+    .nav-cta{ padding:8px 12px; font-size:12px; }
+    .carousel-btn{ width:36px; height:36px; }
+    .carousel-btn.prev{ left:8px; }
+    .carousel-btn.next{ right:8px; }
+    .menu-list li{ font-size:15px; gap:8px; }
+  }
 
   /* Reveal on scroll */
   .reveal{
@@ -645,7 +711,8 @@
     <a href="#avis">Avis</a>
     <a href="#adresse">Adresse</a>
     <a href="#contact">Contact</a>
-    <a href="#presentation">Présentation</a>
+    <a class="nav-mobile-cta" href="#adresse">Me trouver</a>
+    <a class="nav-mobile-cta nav-mobile-cta-ember" href="#contact">Me contacter</a>
   </div>
 </nav>
 
@@ -764,7 +831,7 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <h2>Où nous trouver ?</h2>
+          <h2>Où me trouver ?</h2>
         </div>
       </div>
       <div class="location-grid">
@@ -843,14 +910,14 @@
       <div class="phone-line">
         <div class="phone-line-contacts">
           <a class="big-phone" href="tel:+33664225066">06 64 22 50 66</a>
-          <a class="big-email" href="mailto:adeva2004@gmail.com">adeva2004@gmail.com</a>
+          <a class="big-email" href="mailto:commechezlaeti@gmail.com">commechezlaeti@gmail.com</a>
         </div>
         <p>Pour réserver ou poser vos questions, le plus simple reste un appel ou un SMS — surtout les jours de forte affluence.</p>
       </div>
 
-      <form class="contact-form" action="https://formsubmit.co/adeva2004@gmail.com" method="POST">
+      <form class="contact-form" action="https://formsubmit.co/commechezlaeti@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="Contact — Comme chez Laeti">
-        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_captcha" value="true">
         <div>
           <label for="contact-email">Email</label>
           <input id="contact-email" type="email" name="email" placeholder="votre@email.com" required autocomplete="email">
@@ -908,6 +975,12 @@
       mobile.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
     });
+  });
+  window.addEventListener('resize', function(){
+    if (window.matchMedia('(min-width: 961px)').matches && mobile.classList.contains('open')) {
+      mobile.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
   });
 
   // Reveal on scroll
